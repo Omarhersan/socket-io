@@ -16,6 +16,10 @@ app.use('', express.static(path.join(__dirname, '..', 'public')));
 app.use(routes);
 
 app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'login.html'));
+});
+
+app.get('/chat', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'home.html'));
 });
 
@@ -30,8 +34,11 @@ const server = app.listen(port, () => {
 const io = new Server(server);
 
 io.on('connection', (socket) => {
-    console.log('User connected');
-
+    socket.on('login', (data) => {
+        console.log('User logged in', data);
+        socket.emit('loginSuccess', data);
+    });
+    
     socket.on('joinRoom', (roomId) => {
         console.log('User joined room', roomId);
         socket.join('room-'+roomId);

@@ -1,7 +1,7 @@
 const socket = io('/'); // Connect to the server
 const messageInput = document.getElementById('message');
 const roomId = window.location.href.split('/').pop();
-
+const submit = document.getElementById('submit');
 
 socket.emit('joinRoom', roomId);
     
