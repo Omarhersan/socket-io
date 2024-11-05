@@ -1,0 +1,11 @@
+html {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    height: 100;
+
+}
+
+#messages{
+    min-height: 300px;
+    border: solid 1px gray;
+}
